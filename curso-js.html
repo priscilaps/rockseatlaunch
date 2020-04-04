@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>Curso JS</title>
+    </head>
+    <body>
+        <div id="main">
+
+        </div>
+
+        <script>
+            //mod 1 ex 1
+            var endereco = {  rua: "Rua dos pinheiros",  numero: 1293,  bairro: "Centro",  cidade: "São Paulo",  uf: "SP"};
+
+            console.log('O usuário mora em ' + endereco.cidade + '/' + endereco.uf + ', no bairro ' + endereco.bairro + ', na rua "' + endereco.rua + '" com o n ' + endereco.numero);
+
+            //mod1 ex 2
+            function pares(x, y) {  
+                for ( var i = x; i <= y; i += 2)
+                {
+                        console.log( i );
+                }
+            }
+            
+            pares(32, 321);
+
+
+            //mod1 ex 3
+            function temHabilidade(skills) {
+                  // código aqui
+                  var retorno = ( skills.indexOf("Javascript") > -1 ) ?  true : false;
+                  return retorno;
+            }
+            var skills = ["Javascript", "ReactJS", "React Native"];
+            console.log(temHabilidade(skills)); // true ou false
+
+
+
+            // mod1 ex 4
+            function experiencia(anos) {
+                  if (anos >= 0 && anos <= 1){
+                      return "Iniciante";
+                  } else if (anos >= 1 && anos <= 3) {
+                        return "Intermediário";
+                  } else if (anos >= 3 && anos <= 6){
+                        return "Avançado";
+                  } else if (anos >= 7){
+                        return "Jedi Master";
+                  } else{
+                      return "outro";
+                  }
+
+                    // De 0-1 ano: Iniciante// De 1-3 anos: Intermediário// De 3-6 anos: Avançado// De 7 acima: Jedi Master
+            }
+            var anosEstudo = 7;
+            var nivel = experiencia(anosEstudo);
+            console.log(nivel);
+
+
+            //mod1 ex 5
+
+            var usuarios = [ {    nome: "Diego",    habilidades: ["Javascript", "ReactJS", "Redux"]  }, {    nome: "Gabriel",    habilidades: ["VueJS", "Ruby on Rails", "Elixir"]  } ];
+            for ( var i = 0 ; i <= 1 ; i++)
+            {
+               console.log("O " + usuarios[i].nome + " possui as habilidades: " + usuarios[i].habilidades.join());
+            }
+                
+            //mod2 ex1 
+            var novobotao = document.createElement('button');
+            novobotao.setAttribute('class', 'botao');
+
+            var textoNovobotao = document.createTextNode("Aperte-me!");
+            novobotao.appendChild(textoNovobotao);
+
+            var elementContainer = document.querySelector('#main');
+            elementContainer.appendChild(novobotao);
+            
+            
+            var n = 0;
+
+            novobotao.onclick = function() {
+                var quadrado = document.createElement('div');
+                quadrado.setAttribute('class', 'quadrado');
+                quadrado.setAttribute('id', n); console.log(n);
+                quadrado.onmouseover = function(){
+                    quadrado.style.backgroundColor = getRandomColor();
+                }
+                quadrado.style.width = 100;
+                quadrado.style.height = 100;
+                quadrado.style.backgroundColor = '#f00';
+
+                elementContainer = document.querySelector('#main');
+                elementContainer.appendChild(quadrado);
+                n++;
+            }
+
+            divHover = document.getElementsByClassName('quadrado');
+            divHover.setAttribute('onmouseover', changeColor(this));
+
+            console.log(divHover);
+         
+            function getRandomColor() { 
+                var letters = "0123456789ABCDEF";
+                var color = "#";  for (var i = 0; i < 6; i++) {
+                     color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+                }
+            var newColor = getRandomColor(); // #E943F0
+            var item = 0;
+
+        
+            </script>
+    </body>
+</html>
