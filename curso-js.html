@@ -92,11 +92,6 @@
                 elementContainer.appendChild(quadrado);
                 n++;
             }
-
-            divHover = document.getElementsByClassName('quadrado');
-            divHover.setAttribute('onmouseover', changeColor(this));
-
-            console.log(divHover);
          
             function getRandomColor() { 
                 var letters = "0123456789ABCDEF";
@@ -108,7 +103,42 @@
             var newColor = getRandomColor(); // #E943F0
             var item = 0;
 
-        
+
+
+            //mod2 ex3
+
+            var nomes = ["Diego", "Gabriel", "Lucas"];
+
+            var newUl = document.createElement('ul');
+
+            var x = 3;
+            
+            for(y = 0; y < x; y++){
+                var newLi = document.createElement('li');
+                newLi.innerText = nomes[y];
+                console.log(newLi);
+                newUl.appendChild(newLi);
+            }
+            elementContainer.appendChild(newUl);
+            
+            //mod 2 ex 4
+            var newInputElement = document.createElement('input');
+            newInputElement.setAttribute('type','text');
+            newInputElement.setAttribute('name','nome');
+
+            var newButtonElement = document.createElement('button');
+            newButtonElement.onclick = function adicionar() {
+                newLi = document.createElement('li');
+                newLi.innerText = newInputElement.value;
+                newUl.appendChild(newLi);
+            };
+            newButtonElement.textContent = 'Adicionar';
+
+            elementContainer.appendChild(newInputElement);
+            elementContainer.appendChild(newButtonElement);
+
+            
+
             </script>
     </body>
 </html>
