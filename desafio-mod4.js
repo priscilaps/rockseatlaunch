@@ -29,7 +29,11 @@ var busca = function(valor){
                     resolve(JSON.parse(xhr.responseText));
                 }
             }else{
-                reject('Erro na requisição!');
+                if(xhr.status === 404){
+                    reject('O usuário não existe!');
+                } else {
+                    reject('Erro na requisição!');
+                }
             }
         }
     });
@@ -42,17 +46,38 @@ nInput1.setAttribute('type','text');
 nInput1.setAttribute('name','user');
 
 var nButton1 = document.createElement('button');
+
+
 nButton1.onclick = function verifica(){
-    var exibe = busca('https://api.github.com/users/' + nInput1.value + '/repos');
+    var newUl = document.createElement('ul');
+    var inicialLi = document.createElement('li');
+
+    inicialLi.innerText = 'Carregando...';
+    newUl.appendChild(inicialLi);
+    elementContainer.appendChild(newUl);
+
+    var guardaUrl = 'https://api.github.com/users/' + nInput1.value + '/repos';
+    console.log(guardaUrl);
+
+    busca(guardaUrl);
     
-    busca(exibe)
+    busca(guardaUrl)
         .then(function(response) { 
             console.log(response);
-            console.log(exibe);
+            
+            newUl.innerHTML = '';
+
+            for (let value of response){
+                var newLi = document.createElement('li');
+                newLi.innerText = value.name;
+                console.log(newLi);
+                newUl.appendChild(newLi);
+            }
+            elementContainer.appendChild(newUl);
         })
         .catch(function(error) {
             console.log(error);
-            console.log(exibe);
+            alert(error);
         });
 }
 
