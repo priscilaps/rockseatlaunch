@@ -27,13 +27,14 @@ var busca = function(valor){
             if (xhr.readyState === 4){
                 if (xhr.status === 200){
                     resolve(JSON.parse(xhr.responseText));
-                }
-            }else{
+                }else{
                 if(xhr.status === 404){
                     reject('O usuário não existe!');
                 } else {
                     reject('Erro na requisição!');
+                    console.log(xhr.responseText);
                 }
+            }
             }
         }
     });
@@ -46,12 +47,13 @@ nInput1.setAttribute('type','text');
 nInput1.setAttribute('name','user');
 
 var nButton1 = document.createElement('button');
-
+var newUl = document.createElement('ul');
 
 nButton1.onclick = function verifica(){
-    var newUl = document.createElement('ul');
+    
     var inicialLi = document.createElement('li');
 
+    newUl.innerHTML = '';
     inicialLi.innerText = 'Carregando...';
     newUl.appendChild(inicialLi);
     elementContainer.appendChild(newUl);
