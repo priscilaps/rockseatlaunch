@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap');
 
+:root{
+    --color-rocket: #7159c1;
+}
 *{
     margin: 0;
     padding: 0;
@@ -14,20 +17,159 @@ body{
     line-height: 24px;
     letter-spacing: 1;
 }
-.links{
+.links, .social{
     width: 100%;
     text-align: center;
-    padding: 30px;
+    padding: 30px 0;
 }
-.links a{
+.links a, .social a{
     margin: 0 15px;
     color: #00d8bb;  
     text-decoration: none;
     font-weight: 700;
     border-bottom: 1px solid transparent;
 }
-.links a:hover{
+.links a:hover, .social a:hover{
     color: #e1e1e1;
     border-bottom: 1px solid #e1e1e1;
     transition: ease-in-out 0.5s all;
+}
+.wrapper {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+.wrapper img{
+    border-radius: 100%;
+    border: 2px solid #00d8bb;
+    margin: 15px;
+    padding: 3px;
+    height: 300px;
+}
+h1{
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 100;
+}
+h2{
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+}
+.wrapper ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+.wrapper ul li{
+    list-style-type: none;
+    text-align: center;
+}
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 20px;
+}
+.card{
+    padding: 30px;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    border: 2px solid var(--color-rocket);
+    border-radius: 20px;
+    min-height: 400px;
+    cursor: pointer;
+    min-width: 250px;
+
+}
+.card img{
+    margin: 0 auto;
+}
+.card h1{
+    padding: 25px 0;
+}
+.card-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 20px
+}
+.card-info p {
+    background-color: var(--color-rocket);
+    padding: 5px;
+    border-radius: 20px;
+}
+
+/*----- Modal -----*/
+.modal-overlay{
+    background-color: rgba(0,0,0,7);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    opacity: 0;
+    visibility: hidden;
+}
+.modal{
+    background-color: #e1e1e1;
+    width: 90%;
+    height: 90%;
+    margin: 5vh auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 24px 24px;
+    grid-template-rows: 8% 92%;
+    gap: 0;
+}
+.maximize{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.title-modal{
+    color: black;
+    top: 0;
+    position: absolute;
+    left: 8px;
+
+}
+.title-modal i{
+    top: 0;
+    position: absolute;
+}
+.maximize-modal i{
+    color: black;
+    position: absolute;
+    right: 24px;
+    cursor: pointer;
+}
+.close-modal{
+    color: black;
+    position: absolute;
+    right: 2px;
+    cursor: pointer;
+}
+
+/*----- Modal ativo -----*/
+.modal-overlay.active{
+    opacity: 1;
+    visibility: visible ;
+}
+
+
+iframe{
+    width: 100%;
+    height: 97%;
+    position: absolute;
+    top: 3%;
+}
+.modal-content{
+    grid-column-start: 1;
+    grid-column-end: span end;
+    grid-row-start: row1-start;
+    grid-row-end: 2;
 }
