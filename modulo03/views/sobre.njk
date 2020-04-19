@@ -8,16 +8,18 @@
 
 {% block content %}
     <div class="wrapper">
-        <img src="https://avatars1.githubusercontent.com/u/62256293?s=400&u=ba02a432034663573e9ceaee2b435e90756a6523&v=4" alt="Foto de Priscila Sampaio">
-        <h1>Priscila Pereira Sampaio</h1>
-        <h2>Web and graphic designer, photographer, and craftswoman.</h2>
+        <img src="{{ about.avatar_url }}" alt="Foto de {{ about.name }}">
+        <h1>{{ about.name }}</h1>
+        <h2>{{ about.role }}</h2>
         <ul>
-            <li>HTML</li>
-            <li>CSS</li>
+        {% for tecnologia in about.tecnologias %}
+            <li>{{ tecnologia }}</li>
+        {% endfor %}
         </ul>
         <div class="social">
-            <a href="https://www.facebook.com/pritchps" target="_blank">Facebook</a>
-            <a href="https://www.instagram.com/pritchps">Instagram</a>
+        {% for link in about.links %}
+            <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
+        {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -10,33 +10,19 @@
 {% block content %}
 
         <div class="cards">
-            <div id="starter" class="card">
-                <img src="https://skylab.rocketseat.com.br/static/64c237ccff807c054339a62d53b4b402.svg" alt="Logo do Curso Starter">
-                <h1>Starter</h1>
+        {% for item in items %}
+            <div id="{{item.id}}" class="card">
+                <img src="{{item.logo}}" alt="Logo do Curso Starter">
+                <h1>{{item.title}}</h1>
                 <div class="card-info">
-                    <h2>X módulos</h2>
-                    <p>Free</p>
+                    <h2>{{item.duration}}</h2>
+                    <p>{{item.price}}</p>
+                    {% if (item.featured) %}
+                        <div class="featured">Featured</div>
+                    {% endif %}
                 </div>
             </div>
-            
-            <div id="launchbase" class="card">
-                <img src="https://skylab.rocketseat.com.br/static/0828532024cb46921a6b5e941f8d788d.svg" alt="Logo do Curso Starter">
-                <h1>Launchbase</h1>
-                <div class="card-info">
-                    <h2>X módulos</h2>
-                    <p>Comprar</p>
-                </div>
-            </div>
-            
-            <div id="gostack" class="card">
-                <img src="https://skylab.rocketseat.com.br/static/83a178a0653dab1d55e2ed7946465975.svg" alt="Logo do Curso Starter">
-                <h1>GoStack</h1>
-                <div class="card-info">
-                    <h2>X módulos</h2>
-                    <p>Comprar</p>
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
     
 
