@@ -132,3 +132,51 @@ body#sobre {
     row-gap: 30px;
     width: 100%;
 }
+
+/*----- MODAL -----*/
+
+.modal-overlay{
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    right: 0;
+
+}
+.modal{
+    background-color: #e1e1e1;
+    width: 660px;
+    height: auto;
+    margin: 25vh auto;
+    position: relative;
+    padding-bottom: 30px;
+    border-radius: 16px;
+    text-align: center;
+}
+.modal .recipe {
+    margin-bottom: 60px;
+    padding: 30px 30px 0 30px;
+}
+.modal .title-recipe {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+.modal .author-recipe {
+    font-size: 18px;
+    line-height: 21px;
+    color: #777777;
+}
+.modal .img-recipe {
+    width: 600px;
+    height: 200px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.close-modal {
+    font-size: 16px;
+    line-height: 19px;
+    color: #999999;
+}
