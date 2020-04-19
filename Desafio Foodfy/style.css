@@ -142,7 +142,8 @@ body#sobre {
     position: fixed;
     top:0;
     right: 0;
-
+    /*opacity: 0;
+    visibility: hidden;*/
 }
 .modal{
     background-color: #e1e1e1;
