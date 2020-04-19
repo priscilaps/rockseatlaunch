@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap');
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    color: #777777;
+}
+
+.main {
+    max-width: 940px;
+    margin: 0 auto;
+    color: #111111;
+}
+header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 122px;
+    margin: 36px auto 30px auto;
+    align-items: center;
+}
+
+.menu a{
+    font-size: 16px;
+    text-decoration: none;
+    padding-right: 30px;
+    color: #111111;
+}
+.menu a:active, .menu a:hover{
+    font-weight: 700;
+}
+.main-content {
+    margin-bottom: 50px;
+}
+.feature {
+    background: url('assets/chef.png') #FBDFDB no-repeat bottom right 100px;
+    border-radius: 30px;
+    border-radius: 30px;
+    width: 100%;
+    margin-bottom: 50px;
+    position: relative;
+}
+h1 {
+    font-size: 32px;
+    line-height: 38px;
+}
+.feature h1{
+    margin-bottom: 10px;
+    padding-top: 117px;
+    padding-left: 60px;
+}
+.feature p{
+    opacity: 70%;
+    font-size: 18px;
+    line-height: 28px;
+    padding-bottom: 117px;
+    padding-left: 60px;
+}
+.popular-recipes {
+    width: 100%;
+}
+.popular-recipes h1 {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 20px;
+}
+.popular-recipes .recipes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 30px;
+    width: 100%;
+}
+.img-recipe {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.title-recipe {
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+.author-recipe {
+    color: #777777;
+}
+footer {
+    background: #EEEEEE;
+    margin: 0;
+    width: 100%;
+}
+.copyrights {
+    text-align: center;
+    color: #999999;
+    padding: 23px 0;
+}
+
+
+/* ----- SOBRE ----- */
+
+body#sobre {
+    font-size: 18px;
+    line-height: 28px;
+    color: #444444;
+}
+
+#sobre p {
+    margin-bottom: 30px;
+}
+#sobre h1 {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 20px;
+}
+#sobre h2 {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+/* ----- RECEITAS ----- */
+
+#receitas .recipes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 30px;
+    width: 100%;
+}
