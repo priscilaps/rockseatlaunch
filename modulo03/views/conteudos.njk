@@ -14,7 +14,7 @@
             <div id="{{item.id}}" class="card">
                 <img src="{{item.logo}}" alt="Logo do Curso Starter">
                 <h1>{{item.title}}</h1>
-                <div class="card-info">
+                <div class="card-info {{ 'featured-card' if item.featured }}">
                     <h2>{{item.duration}}</h2>
                     <p>{{item.price}}</p>
                     {% if (item.featured) %}
@@ -24,23 +24,7 @@
             </div>
             {% endfor %}
         </div>
-    
-
-        <div class="modal-overlay">
-            <div class="modal">
-                <h2 class="title-modal">titulo do iframe <i class="material-icons">expand_more</i></h2>
-                <a class="maximize-modal">
-                    <i id="maximize" class="material-icons">fullscreen</i>
-                </a>
-                <a class="close-modal">
-                    <i class="material-icons">close</i>
-                </a>
-                <div class="modal-content">
-                    <iframe src="https://rocketseat.com.br/" frameborder="0"></iframe>
-                </div>
-            </div>
-        </div>
-        <script src="scripts.js"></script>
+        <script src="/scripts.js"></script>
 
         
 {% endblock %}
