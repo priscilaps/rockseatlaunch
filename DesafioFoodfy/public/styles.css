@@ -195,5 +195,5 @@ body#receita ul, body#receita ol{
 }
 
 .show{
-    display: bnlock;
+    display: block;
 }
