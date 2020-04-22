@@ -75,9 +75,6 @@ h1 {
     row-gap: 30px;
     width: 100%;
 }
-body:not(#receita) .recipe{
-    cursor: pointer;
-}
 .img-recipe {
     width: 100%;
     height: auto;
@@ -137,6 +134,7 @@ body#sobre {
 }
 
 /*----- RECEITA -----*/
+
 body#receita .img-recipe {
     object-fit: cover;
     width: 100%;

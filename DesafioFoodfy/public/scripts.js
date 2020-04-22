@@ -7,27 +7,38 @@ for (const recipe of recipes) {
     })
 }
 
-const meleca = document.querySelectorAll(".button")
-console.log(meleca)
-  
-for (let button of meleca) {
-    button.addEventListener("click", function(){
-                
-        if ( button.classList.contains("show") ) {
+const wrappers = document.querySelectorAll(".wrapper")  //pega os wrappers de ingredientes, modo de preparo e informações adicionais
+for (wrapper of wrappers){
+    const buttonState = wrapper.querySelector(".button")
+    const contentDisplay = wrapper.querySelector(".button-content")
 
-            console.log("tenho a classe SHOW")
-            button.classList.add('hide')
-            button.classList.remove("show")
-            button.textContent.replace("mostrar")
+    console.log(buttonState)
+    console.log(contentDisplay)
 
-        }else if (button.classList.contains("hide")){
+    buttonState.addEventListener('click', function(){
+    console.log(contentDisplay.classList.contains("show"))
+    console.log(buttonState.textContent)
 
-            console.log("tenho a classe HIDE")
-            button.classList.add("show")
-            button.classList.remove("hide")
-            button.textContent.replace("esconder")
+    const classes = contentDisplay.classList
+    
+        if ( classes.contains("show") ) {
+
+            console.log(`tenho a classe SHOW -> minhas classes: ${{classes}}`)
+            contentDisplay.classList.add('hide')
+            contentDisplay.classList.remove("show")
+            buttonState.textContent = "mostrar" 
+            console.log(buttonState.textContent)
+            console.log(classes)
+    
+        }else if (classes.contains("hide")){
+    
+            console.log(`tenho a classe HIDE -> minhas classes:${{classes}}`)
+            
+            contentDisplay.classList.add("show")
+            contentDisplay.classList.remove("hide")
+            buttonState.textContent = "esconder"
         }
-
-    console.log("BUGUEI")   
+    
+        
     })
 }
