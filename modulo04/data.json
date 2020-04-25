@@ -1,0 +1,35 @@
+{
+  "members": [
+    {
+      "id": 1,
+      "avatar_url": "https://source.unsplash.com/collection/3465564/900x900",
+      "name": "PRISCILA PEREIRA SAMPAIO",
+      "email": "priscilapsampaio@gmail.com",
+      "dob": 517190400000,
+      "gender": "F",
+      "blood": "O+",
+      "weight": "69",
+      "height": "168"
+    }
+  ],
+  "instructors": [
+    {
+      "id": 1,
+      "name": "Fulano de Tal",
+      "avatar_url": "https://source.unsplash.com/collection/3465564/900x900",
+      "dob": 546825600000,
+      "gender": "M",
+      "services": "musculação, crosfit, boxe",
+      "created_at": 1587586855171
+    },
+    {
+      "id": 2,
+      "name": "Ciclana de Sá",
+      "avatar_url": "https://source.unsplash.com/collection/3465564/900x900",
+      "dob": 328233600000,
+      "gender": "F",
+      "services": "balé-fit, jump, zumba, step",
+      "created_at": 1587676793372
+    }
+  ]
+}
