@@ -1,34 +1,43 @@
 {
-  "members": [
+  "students": [
     {
       "id": 1,
-      "avatar_url": "https://source.unsplash.com/collection/3465564/900x900",
+      "avatar_url": "https://images.unsplash.com/photo-1544717305-2782549b5136",
       "name": "PRISCILA PEREIRA SAMPAIO",
       "email": "priscilapsampaio@gmail.com",
       "dob": 517190400000,
-      "gender": "F",
-      "blood": "O+",
-      "weight": "69",
-      "height": "168"
+      "schoolGrade": "5EF",
+      "weeklyWorkload": "69"
+    },
+    {
+      "id": 2,
+      "avatar_url": "https://images.unsplash.com/photo-1542156822-6924d1a71ace",
+      "name": "João Pedro da Silva",
+      "email": "jpsilva@gmail.com",
+      "dob": 331516800000,
+      "schoolGrade": "3EM",
+      "weeklyWorkload": "50"
     }
   ],
-  "instructors": [
+  "teachers": [
     {
       "id": 1,
       "name": "Fulano de Tal",
-      "avatar_url": "https://source.unsplash.com/collection/3465564/900x900",
+      "avatar_url": "https://images.unsplash.com/photo-1548449112-96a38a643324",
       "dob": 546825600000,
-      "gender": "M",
-      "services": "musculação, crosfit, boxe",
+      "educationLvl": "Superior",
+      "typeOfClass": "P",
+      "subjects": "matemática, física, química",
       "created_at": 1587586855171
     },
     {
       "id": 2,
       "name": "Ciclana de Sá",
-      "avatar_url": "https://source.unsplash.com/collection/3465564/900x900",
+      "avatar_url": "https://images.unsplash.com/photo-1525571453712-090270b8354f",
       "dob": 328233600000,
-      "gender": "F",
-      "services": "balé-fit, jump, zumba, step",
+      "educationLvl": "doutorado",
+      "typeOfClass": "O",
+      "subjects": "português, inglês",
       "created_at": 1587676793372
     }
   ]

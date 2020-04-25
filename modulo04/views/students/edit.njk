@@ -3,29 +3,29 @@
 
 {% block content %}
 <div class="card">
-    <section class="avatar" style="background: url({{ member.avatar_url }}) no-repeat center center / cover;">
+    <section class="avatar" style="background: url({{ student.avatar_url }}) no-repeat center center / cover;">
     </section>
     <section class="details">
-        <form method="POST" action="/members?_method=PUT">
+        <form method="POST" action="/students?_method=PUT">
                         
-            <h3>Editar Membro</h3>
+            <h3>Update Student's Info</h3>
 
             <input 
                 type="hidden" 
                 name="id"
-                value={{member.id}}>
+                value={{student.id}}>
 
-            {% include 'members/fields.njk' %}
+            {% include 'students/fields.njk' %}
         
         </form>
 
-        <form id="form-delete" method="POST" action="/members?_method=DELETE">
+        <form id="form-delete" method="POST" action="/students?_method=DELETE">
             <input 
                 type="hidden" 
                 name="id"
-                value={{member.id}}>
+                value={{student.id}}>
 
-            <button type="submit">Deletar</button>
+            <button type="submit">Delete</button>
         </form>
         <script>
 
