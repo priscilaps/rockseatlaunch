@@ -1,15 +1,6 @@
 {
   "students": [
     {
-      "id": 1,
-      "avatar_url": "https://images.unsplash.com/photo-1544717305-2782549b5136",
-      "name": "PRISCILA PEREIRA SAMPAIO",
-      "email": "priscilapsampaio@gmail.com",
-      "dob": 517190400000,
-      "schoolGrade": "5EF",
-      "weeklyWorkload": "69"
-    },
-    {
       "id": 2,
       "avatar_url": "https://images.unsplash.com/photo-1542156822-6924d1a71ace",
       "name": "João Pedro da Silva",
@@ -17,6 +8,15 @@
       "dob": 331516800000,
       "schoolGrade": "3EM",
       "weeklyWorkload": "50"
+    },
+    {
+      "id": 3,
+      "avatar_url": "https://images.unsplash.com/photo-1557722808-868d2424c292",
+      "name": "Joana Pereira",
+      "email": "jojop@gmail.com",
+      "dob": 222307200000,
+      "schoolGrade": "1EM",
+      "weeklyWorkload": "67"
     }
   ],
   "teachers": [
@@ -39,6 +39,36 @@
       "typeOfClass": "O",
       "subjects": "português, inglês",
       "created_at": 1587676793372
+    },
+    {
+      "id": 3,
+      "name": "Maria Joaquina Soares",
+      "avatar_url": "https://images.unsplash.com/photo-1551989745-347c28b620e5",
+      "dob": 172195200000,
+      "typeOfClass": "O",
+      "subjects": "geografia, história",
+      "created_at": 1587857210154,
+      "educationLvl": "Mestrado"
+    },
+    {
+      "id": 5,
+      "name": "Roberto Gonçalves",
+      "avatar_url": "https://images.unsplash.com/photo-1561677843-39dee7a319ca",
+      "dob": 404006400000,
+      "educationLvl": "Medio",
+      "typeOfClass": "P",
+      "subjects": "inglês",
+      "created_at": 1587857919506
+    },
+    {
+      "id": 6,
+      "name": "Morgana Boccucci",
+      "avatar_url": "https://images.unsplash.com/photo-1557722808-868d2424c292",
+      "dob": 469411200000,
+      "educationLvl": "Superior",
+      "typeOfClass": "O",
+      "subjects": "artes",
+      "created_at": 1587858048353
     }
   ]
 }

@@ -34,7 +34,7 @@ module.exports = {
                 grade = "2º ano do ensino médio"
                 break
             case "1EM": 
-                grade = "2º ano do ensino médio"
+                grade = "1º ano do ensino médio"
                 break
             case "8EF": 
                 grade = "8º ano do ensino fundamental"
@@ -57,8 +57,8 @@ module.exports = {
             case "Medio":    
                 graduation = "Ensino Médio Completo"
                 break
-            case "Supeior": 
-                graduation = "Ensino Superio Completo"
+            case "Superior": 
+                graduation = "Ensino Superior Completo"
                 break
         }
 

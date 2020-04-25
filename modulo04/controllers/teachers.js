@@ -76,7 +76,7 @@ exports.post = function(req,res){
             
     }
 
-    let {avatar_url, dob, name, subjects, typeOfClass} = req.body
+    let {avatar_url, dob, name, subjects, typeOfClass, educationLvl} = req.body
 
     dob = Date.parse(req.body.dob)
     let created_at = Date.now()
@@ -87,6 +87,7 @@ exports.post = function(req,res){
             name,
             avatar_url,
             dob,
+            educationLvl,
             typeOfClass,
             subjects,
             created_at
