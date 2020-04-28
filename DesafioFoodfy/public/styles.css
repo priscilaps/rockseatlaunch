@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap');
 
+:root{
+    --color-rocket: #7159c1;
+}
+
 * {
     margin: 0;
 }
@@ -74,6 +78,9 @@ h1 {
     column-gap: 20px;
     row-gap: 30px;
     width: 100%;
+}
+.recipe{
+    cursor: pointer;
 }
 .img-recipe {
     width: 100%;
@@ -174,7 +181,7 @@ body#receita .title h3{
     font-size: 24px;
     line-height: 28px;
 }
-body#receita .button{
+body#receita .wrapper .title .button{
     font-size: 12px;
     line-height: 14px;
     text-transform: uppercase;
@@ -196,4 +203,130 @@ body#receita ul, body#receita ol{
 
 .show{
     display: block;
+}
+
+
+/* ----- Admin - Manage Recipes - Index ----- */
+
+.admin header {
+    grid-template-columns: 1fr 940px 1fr;
+    background-color: #111111;
+    margin: 0;
+    padding: 27px 0;
+}
+.admin .logo img{
+    filter: invert() grayscale(99);
+}
+.admin #manage-recipes{
+    margin-top: 50px;
+}
+.admin #manage-recipes .recipes{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+.admin #manage-recipes .recipes .recipe{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    width: 100%;
+    cursor: initial;
+}
+.admin #manage-recipes .recipes .recipe .img-recipe {
+    margin: 0;
+}
+.admin #manage-recipes .recipes .recipe .view-recipe{
+    margin-top: 10px;
+}
+.admin #manage-recipes .recipes .recipe .view-recipe a.viewButton{
+    color: var(--color-rocket);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* ----- Admin - Manage Recipes - Edit Recipe ----- */
+
+#manage-recipes .header{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    margin-bottom: 30px;    
+}
+#manage-recipes .header h1.page-title{
+    font-size: 24px;
+    line-height: 37px;
+    text-align: left;
+}
+#manage-recipes div.header .button,
+#manage-recipes button.button
+{
+    text-align: right;
+    text-decoration: none;
+    color: white;
+    background-color: var(--color-rocket);
+    border-radius: 4px;
+    padding: 9px 20px;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+    font-weight: 700;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+#manage-recipes section{
+    position: relative;
+}
+#manage-recipes button.button{
+    position: absolute;
+    right: 0;
+    margin-top: -67px;
+    
+}
+.admin .recipe-info{
+    margin-top: 20px;
+}
+#manage-recipes .item{
+    margin-bottom: 20px;
+}
+#manage-recipes form{
+    line-height: 19px;
+    color: #111111;
+    font-size: 16px;
+    font-weight: 700;
+}
+#manage-recipes input,
+#manage-recipes textarea{
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    padding: 15px 20px;
+    margin: 10px 0;
+    font-weight: 400;
+}
+#manage-recipes input::placeholder,
+#manage-recipes textarea::placeholder {
+    font-size: 16px;
+    line-height: 19px;
+    color: #111111;
+}
+#manage-recipes button.add-ingredient,
+#manage-recipes button.add-preparation-step{
+    text-decoration: none;
+    color: var(--color-rocket);
+    background-color: white;
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+    font-weight: 700;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+#manage-recipes #form-delete button.button{
+    right: 148.6px;
+    background-color: #DC4747;
 }

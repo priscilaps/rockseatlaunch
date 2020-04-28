@@ -1,8 +1,10 @@
+const express = require('express')
+const routes = express.Router()
 const recipes = require('./admin/recipes')
 
 /* ----- Rotas do admin -----*/
 
-routes.get("/admin/recipes", recipes.index); // Mostrar a lista de receitas
+routes.get("/admin/recipes", recipes.admIndex); // Mostrar a lista de receitas
 routes.get("/admin/recipes/create", recipes.create); // Mostrar formulário de nova receita
 routes.get("/admin/recipes/:id", recipes.show); // Exibir detalhes de uma receita
 routes.get("/admin/recipes/:id/edit", recipes.edit); // Mostrar formulário de edição de receita
@@ -14,14 +16,14 @@ routes.delete("/admin/recipes", recipes.delete); // Deletar uma receita
 
 /* ----- Rotas das views -----*/
 
-server.get("/", recipes.index)
+routes.get("/", recipes.index)
 
-server.get("/sobre", function(req, res){
+routes.get("/sobre", function(req, res){
     return res.render("sobre")
 })
 
-server.get("/receitas", recipes.list)
+routes.get("/receitas", recipes.list)
 
-server.get("/receita/:index", recipes.open)
+routes.get("/receita/:index", recipes.open)
 
 module.exports = routes
