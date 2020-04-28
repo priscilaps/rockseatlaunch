@@ -23,24 +23,32 @@
         <div class="ingredient">
             <input type="text" name="ingredients[]" value="{{ ingredient }}" />
         </div>
-    {% endfor %}    
-    <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+    {% endfor %} 
+    {% if (recipe == null) %}
+    <div class="ingredient">
+            <input type="text" name="ingredients[]" value="{{ ingredient }}" />
+    </div>   
+    {% endif %}
 </div>
-<div id="preparation" class="item">
+<button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+<div id="preparations" class="item">
     <div>Modo de preparo</div>
     {% for step in recipe.preparation %}
-        <div class="ingredient">
+        <div class="preparation">
             <input type="text" name="preparation[]" value="{{ step }}"/>
         </div>
     {% endfor %}
-    <div class="ingredient">
+    {% if (recipe == null) %}
+    <div class="preparation">
             <input type="text" name="preparation[]" value="{{ step }}"/>
     </div>
-    <button type="button" class="add-preparation-step">Adicionar novo passo</button>
+    {% endif %}
 </div>
+<button type="button" class="add-preparation-step">Adicionar novo passo</button>
 <div class="item">
     <div>Informações adicionais</div>
     <div>
         <textarea name="information" cols="30" rows="10" type="text">{{ recipe.information }}</textarea>
     </div>
 </div>
+<script src="/scripts.js"></script>

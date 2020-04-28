@@ -32,16 +32,16 @@ exports.post = function(req, res){
             
     }
 
-    let {image, title, author, ingridients, preparation, information} = req.body
+    let {image, title, author, ingredients, preparation, information} = req.body
 
-    let id = Number(data.recipes.length + 1)
+    let id = Number(data.recipes.length)
 
         data.recipes.push({
             id,
             image,
             title,
             author,
-            ingridients,
+            ingredients,
             preparation,
             information
     })

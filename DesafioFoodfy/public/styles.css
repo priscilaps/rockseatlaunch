@@ -85,6 +85,7 @@ h1 {
 .img-recipe {
     width: 100%;
     height: auto;
+    object-fit: cover;
     border-radius: 15px;
     margin-bottom: 20px;
 }
@@ -286,8 +287,8 @@ body#receita ul, body#receita ol{
 .admin .recipe-info{
     margin-top: 20px;
 }
-#manage-recipes .item{
-    margin-bottom: 20px;
+#manage-recipes .item:not(:first-of-type){
+    margin-top: 20px;
 }
 #manage-recipes form{
     line-height: 19px;
