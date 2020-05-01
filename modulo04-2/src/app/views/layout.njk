@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        {% block head %}
+
+            <title>Desafio 4</title>
+
+        {% endblock %}
+
+        <link rel="icon"  type="image/x-icon" href="https://raw.githubusercontent.com/Rocketseat/bootcamp-launchbase-desafios-02/master/desafios/favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="/styles.css">
+    </head>
+    <body>
+        <header>
+            <div class="links">
+                <a href="/teachers">Teachers</a>
+                <a href="/students">Students</a>
+            </div>
+        </header>
+
+        {% block content %}
+
+        {% endblock %}
+
+        <script src="/scripts.js"></script>
+
+    </body>
+</html>

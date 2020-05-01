@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap');
+
+:root{
+    --color-rocket: #7159c1;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background: var(--color-rocket);
+    color: #e1e1e1;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 1;
+}
+header {
+    background-color: white;
+    width: 100%;
+    padding: 32px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.links a + a{
+    margin-left: 32px;
+}
+.links a{
+    margin: 0 15px;
+    color: #777777;  
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px solid transparent;
+    position: relative;
+}
+.links a.active{
+    color: var(--color-rocket);
+    font-weight: 700;
+}
+.links a:hover{
+    color: var(--color-rocket);
+}
+.links a::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: var(--color-rocket);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+.links a:hover::after{
+    width: 100%;
+    transition: width 200ms ease-in-out;
+}
+
+
+/* ----- CARD ----- */
+
+.card {
+    background-color: white;
+    color: black;
+    width: 800px;
+    min-height: 400px;
+    margin: 45px auto;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    box-shadow: 0px 2px 6px -2px rgba(0,0,0,0.4);
+
+    /* animation */
+    animation-name: up 700ms ease-in-out;
+}
+@keyframes up{
+    from{
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.details {
+    padding: 32px;
+    position: relative;
+}
+.details .item{
+    padding: 16px 0;
+}
+.details .item:not(:last-child){
+    border-bottom: 1px solid rgba(0,0,0,0.6);
+}
+.details h3,
+.details:not(.student) .item div:nth-child(1){
+    font-size: 14px;
+    line-height: 24px;
+    color: #777;
+    letter-spacing: 0.7;
+    font-weight: normal;
+}
+.details .item div:nth-child(2){
+    font-size: 18px;
+    color: #555;
+    font-weight: bold;
+}
+.details .item:not(.sexo) div span,
+tbody tr td:not(:first-child) span{
+    font-size: 12px;
+    border-radius: 16px;
+    padding: 8px 16px;
+    background-color: #f7df1e;
+    color: #777;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.details h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--color-rocket);
+}
+
+
+/* ----- FORM ----- */
+input, select {
+    width: 100%;
+    outline: none;
+    border: none;
+}
+input[type="radio"] {
+    width: initial;
+    margin-right: 4px;
+}
+input::placeholder {
+    font-size: 16px;
+    font-weight: normal;
+}
+button[type="submit"],
+a.button {
+    padding: 8px 32px;
+    background-color: var(--color-rocket);
+    border-radius: 4px;
+    margin-top: 32px;
+    width: 45%;
+    font-size: 16px;
+    border: none;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+
+}
+
+section.create button[type="submit"],
+a.button{
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+
+}
+#form-delete button[type="submit"]{
+    margin-top: 8px;
+    background-color: red;
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+}
+
+
+/* ----- INDEX -----*/
+
+.table-container{
+    display: block;
+    padding: 40px;
+    box-sizing: border-box;
+}
+.table-container table{
+    border-spacing: 0;
+}
+.table-container thead tr th{
+    text-align: left;
+}
+td, th{
+    padding: 16px;
+    border-bottom: 1px solid #d9d9d9;
+}
+th {
+    text-transform: uppercase;
+    color: #777;
+    font-size:  14px;
+}
+tr:last-child td{
+    border-bottom: none;
+}
+tbody tr td:first-child{
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    align-items: center;
+}
+tbody tr td:first-child span{
+    width: 48px;
+    height: 48px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 3px 1px 6px -4px black;
+    border: 2px solid var(--color-rocket);
+
+}
+tbody tr td:last-child a,
+.table-container > a{
+    background-color: var(--color-rocket);
+    padding: 8px 16px;
+    text-transform: uppercase;
+    text-decoration:  none;
+    color: white;
+    font-size: 12px;
+    border-radius: 6px;
+}
+.table-container > a{
+    margin-bottom:  16px;
+    display: inline-block;
+}
+.table-container thead tr th:last-child,
+td:last-child{
+    text-align: right;
+}
