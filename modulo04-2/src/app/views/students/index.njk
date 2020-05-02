@@ -3,7 +3,13 @@
 
 {% block content %}
     <div class="card table-container">
-        <a href="/students/create">New</a>
+        <div class="header">
+            <a class="button" href="/students/create">New</a>
+            <form action="/students" method="get">
+                <input type="text" name="filter" placeholder="Filter by name or email">
+                <button type="submit">Filter</button>
+            </form>
+        </div>
         <table width="100%">
             <thead>
                 <tr>
@@ -21,11 +27,13 @@
                             {{ student.name }}
                         </td>
                         <td>{{ student.email}}</td>
-                        <td>{{ student.schoolGrade}}</td>
+                        <td>{{ student.school_grade}}</td>
                         <td><a href="/students/{{ student.id }}">more</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <div class="pagination" data-page = {{pagination.page}} data-total = {{pagination.total}} data-filter={{filter}}>
+        </div>
     </div>
 {% endblock content %}

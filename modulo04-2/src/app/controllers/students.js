@@ -1,136 +1,93 @@
+const student = require('../models/student')
 
-const { date } = require('../../lib/utils')
-const { grade } = require('../../lib/utils')
 
-exports.index = function(req,res){
-    let i = 0
-    let studentShow = []
-    for (student of data.students){
-    
-        studentShow[i] = {
+const { date, grade, adjustGrade } = require('../../lib/utils')
 
-            ...student,
-            schoolGrade: grade(student.schoolGrade)
+module.exports = {
+    index(req,res){
+        let { filter, page, limit } = req.query
+
+        page = page || 1
+        limit = limit || 2
+        let offset = limit * (page - 1)
+
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(students){
+                const pagination = {
+                    total: Math.ceil( students[0].total / limit ),
+                    page
+                }
+                return res.render("students/index", { students: adjustGrade(students, {grade} ), pagination, filter })
+            }
         }
-        i++      
-    }
-    return res.render("students/index", { students: studentShow } )
-}
-// show
-exports.show = function(req,res){
-    const { id } = req.params
 
-    const foundStudent = data.students.find(function(student){
-        return student.id == id
-    })
+        student.paginate(params)
 
-    if (!foundStudent) return res.send("Instrutor não encontrado.")
-
-    const student = {
-        ...foundStudent,
-        dob: date(foundStudent.dob).bDay,
-        schoolGrade: grade(foundStudent.schoolGrade)
-    }
-
-    return res.render("students/show", { student })
-}
-//create
-exports.create = function(req, res){
-    return res.render("students/create")
-}
-// post -> salvar dados
-exports.post = function(req,res){
+    },
+    create(req,res){
+        student.teachers(function(options){
+            return res.render("students/create", { teacherOptions: options })
+        })
+    },
+    post(req,res){
+        const keys = Object.keys(req.body)
     
-    const keys = Object.keys(req.body)
-    
-    for (key of keys){
-        if (req.body[key] == ""){
-            return res.send("Por favor, preencha todos os campos.")
+        for (key of keys){
+            if (req.body[key] == ""){
+                return res.send("Por favor, preencha todos os campos.")
+            }
+                
         }
+
+        student.create(req.body, function(student){
+            return res.redirect(`/students/${student.id}`)
+        })
+    },
+    show(req,res){
+        student.find(req.params.id, function(student){
+            if (!student) return res.send("Student not found!")
+
+            student.dob = date(student.dob).bDay
+            student.school_grade = grade(student.school_grade)
+
+            return res.render("students/show", { student })
+        })
+    },
+    edit(req,res){
+        student.find(req.params.id, function(student) {
+            if (!student) return res.send("Student not found!")
+
+            student.dob = date(student.dob).iso
+            student.school_grade = grade(student.school_grade)
             
-    }
-
-    dob = Date.parse(req.body.dob)
-
-    let id = 1
-    const lastStudent = data.students[data.students.length - 1]
-
-    if (lastStudent){
-        id = lastStudent.id + 1
-    }
-
-    data.students.push({
-        id,
-        ...req.body,
-        dob
-    })
-
-    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
-        if (err) return res.send("Write file error")
-
-        return res.redirect("/students")
-    })   
-
-    //return res.send(req.body)
-}
-//edit
-exports.edit = function(req,res){
-    const { id } = req.params
-
-    const foundStudent = data.students.find(function(student){
-        return student.id == id
-    })
-
-    if (!foundStudent) return res.send("Instrutor não encontrado.")
-
-    const student = {
-        ...foundStudent,
-        dob: date(foundStudent.dob).iso
-    }
+            const {teachers} = require('../models/student')
+            teachers( function(options){
+                return res.render("students/edit", { student, teacherOptions: options })
+            })
+        })
+    },
+    put(req,res){
+        const keys = Object.keys(req.body)
     
-    return res.render('students/edit', { student: student })
-}
-//put // update 
-exports.put = function(req,res){
-    const { id } = req.body
-    let index = 0
-
-    const foundStudent = data.students.find(function(student, foundIndex){
-        if ( student.id == id ) {
-            index = foundIndex
-            return true
+        for (key of keys){
+            if (req.body[key] == ""){
+                return res.send("Por favor, preencha todos os campos.")
+            }
+                
         }
-    })
 
-    if (!foundStudent) return res.send("Instrutor não encontrado.")
-
-    const student = {
-        ...foundStudent,
-        ...req.body, 
-        dob: Date.parse(req.body.dob),
-        id: Number(req.body.id)
+        student.update(req.body, function(){
+            return res.redirect(`/students/${req.body.id}`)
+        })
+    },
+    delete(req,res){
+        student.delete(req.body.id, function(){
+            return res.redirect(`/students`)
+        })
     }
-    
-    data.students[index] = student
-
-    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
-        if (err) return res.send("Write file error")
-
-        return res.redirect(`/students/${id}`)
-    })   
 }
-//delete
-exports.delete = function(req,res){
-    const {id} = req.body
 
-    const filteredStudents = data.students.filter(function(student){
-        return student.id != id
-    })
-    data.students = filteredStudents
-
-    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
-        if (err) return res.send("Write file error")
-
-        return res.redirect(`/students`)
-    })  
-}

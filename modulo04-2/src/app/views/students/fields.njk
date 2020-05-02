@@ -38,26 +38,26 @@
 <div class="item">
     <div>School Grade</div>
     <div>
-        <select name="schoolGrade">
-            <option value="3EM" {% if student.schoolGrade =="EM" %} selected {% endif %}>
+        <select name="school_grade">
+            <option value="3EM" {% if student.school_grade =="EM" %} selected {% endif %}>
                 3º ano do ensino médio
             </option>
-            <option value="2EM" {% if student.schoolGrade =="2EM" %} selected {% endif %}>
+            <option value="2EM" {% if student.school_grade =="2EM" %} selected {% endif %}>
                 2º ano do ensino médio
             </option>
-            <option value="1EM" {% if student.schoolGrade =="1EM" %} selected {% endif %}>
+            <option value="1EM" {% if student.school_grade =="1EM" %} selected {% endif %}>
                 1º ano do ensino médio
             </option>
-            <option value="8EF" {% if student.schoolGrade =="8EF" %} selected {% endif %}>
+            <option value="8EF" {% if student.school_grade =="8EF" %} selected {% endif %}>
                 8º ano do ensino fundamental
             </option>
-            <option value="7EF" {% if student.schoolGrade =="7EF" %} selected {% endif %}>
+            <option value="7EF" {% if student.school_grade =="7EF" %} selected {% endif %}>
                 7º ano do ensino fundamental
             </option>
-            <option value="6EF" {% if student.schoolGrade =="6EF" %} selected {% endif %}>
+            <option value="6EF" {% if student.school_grade =="6EF" %} selected {% endif %}>
                 6º ano do ensino fundamental
             </option>
-            <option value="5EF" {% if student.schoolGrade =="5EF" %} selected {% endif %}>
+            <option value="5EF" {% if student.school_grade =="5EF" %} selected {% endif %}>
                 5º ano do ensino fundamental
             </option>
         </select>
@@ -68,8 +68,20 @@
     <div>
         <input 
             type="number" 
-            name="weeklyWorkload"
-            value="{{ student.weeklyWorkload }}">
+            name="weekly_workload"
+            value="{{ student.weekly_workload }}">
+    </div>
+</div>
+<div class="item">
+    <div>Teacher</div>
+    <div>
+        <select name="teacher">
+        {% for teacher in teacherOptions %}
+            <option value="{{teacher.id}}" {% if student.teacher_id == teacher.id %} selected {% endif %}>
+                {{teacher.name}}
+            </option>
+        {% endfor %}    
+        </select>
     </div>
 </div>
 

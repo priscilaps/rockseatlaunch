@@ -1,23 +1,30 @@
 const teacher = require('../models/teacher')
 
-const { age, date, grade, graduation } = require('../../lib/utils')
+const { age, date, separateSubjects, graduation } = require('../../lib/utils')
 
 module.exports = {
     index(req,res){
-        teacher.all(function(teachers){
-            let i = 0
-            let teacherShow = []
-            for (let teacher of teachers){
-            
-                teacherShow[i] = {
+        let { filter, page, limit } = req.query
 
-                    ...teacher,
-                    subjects: teacher.subjects.split(",")
+        page = page || 1
+        limit = limit || 2
+        let offset = limit * (page - 1)
+
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(teachers){
+                const pagination = {
+                    total: Math.ceil( teachers[0].total / limit ),
+                    page
                 }
-                i++      
+                return res.render("teachers/index", { teachers: separateSubjects(teachers), pagination, filter })
             }
-            return res.render("teachers/index", { teachers: teacherShow })
-        })
+        }
+
+        teacher.paginate(params)
 
     },
     create(req,res){

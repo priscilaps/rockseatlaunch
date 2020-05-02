@@ -56,6 +56,20 @@ module.exports = {
     
         return grade 
     },
+    adjustGrade(students, { grade }){
+        let i = 0
+        let studentShow = []
+        for (let student of students){
+        
+            studentShow[i] = {
+
+                ...student,
+                school_grade: grade(student.school_grade)
+            }
+            i++      
+        }
+        return studentShow
+    },
     graduation(graduation){
         switch (graduation){
             case "Medio":    
@@ -67,5 +81,20 @@ module.exports = {
         }
 
     return graduation
+    },
+    separateSubjects(teachers){
+        let i = 0
+        let teacherShow = []
+        for (let teacher of teachers){
+        
+            teacherShow[i] = {
+
+                ...teacher,
+                subjects: teacher.subjects.split(",")
+            }
+            i++      
+        }
+        return teacherShow
     }
+
 }
