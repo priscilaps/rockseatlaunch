@@ -11,27 +11,34 @@ module.exports = {
             callback( results.rows )
         })
     },
+    popular(callback) {
+        db.query(`SELECT recipes.*, chefs.name as chef_name FROM recipes LEFT JOIN chefs ON (chefs.id = recipes.chef_id) LIMIT 6`, function(err, results){
+            if (err) throw `Database Error! ${err}`
+
+            callback( results.rows )
+        })
+    },
     create(data, callback) {
         const query = `
             INSERT INTO recipes (
-                name,
-                avatar_url,
-                dob,
-                email,
-                school_grade,
-                weekly_workload,
-                teacher_id
+                title,
+                image,
+                ingredients,
+                preparation,
+                information,
+                created_at,
+                chef_id
             ) VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id
         `
         const values = [
-            data.name,
-            data.avatar_url,
-            date(data.dob).iso,
-            data.email,
-            data.school_grade,
-            parseInt(data.weekly_workload),
-            data.teacher
+            data.title,
+            data.image,
+            data.ingredients,
+            data.preparation,
+            data.information,
+            date(Date.now()).iso,
+            data.chef
         ]
         db.query(query, values, function(err, results){
             if (err) throw `Database Error! ${err}`
@@ -41,10 +48,20 @@ module.exports = {
     },
     find(id, callback){
         db.query(`
-        SELECT recipes.*, teachers.name AS teacher_name
+        SELECT recipes.*, chefs.name AS chef_name
         FROM recipes
-        LEFT JOIN teachers ON (recipes.teacher_id = teachers.id)
+        LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         WHERE recipes.id= $1`, [id], function(err, results){
+            if (err) throw `Database Error! ${err}`
+            
+            callback( results.rows[0] )
+        })
+    },
+    search(filter, callback){
+        db.query(`
+        SELECT *
+        FROM recipes
+        WHERE name ILIKE '%$1%'`, filter, function(err, results){
             if (err) throw `Database Error! ${err}`
 
             callback( results.rows[0] )
@@ -53,24 +70,22 @@ module.exports = {
     update(data, callback){
         const query = `
             UPDATE recipes SET
-                avatar_url=($1),
-                name=($2),
-                dob=($3),
-                email=($4),
-                school_grade=($5),
-                weekly_workload=($6),
-                teacher_id=($7)
-            WHERE id = $8
+                image=($1),
+                title=($2),
+                ingredients=($3),
+                preparation=($4),
+                information=($5),
+                chef_id=($6)
+            WHERE id = $7
         `
 
         const values = [
-            data.avatar_url,
-            data.name,
-            date(data.dob).iso,
-            data.email,
-            data.school_grade,
-            parseInt(data.weekly_workload),
-            data.teacher,
+            data.image,
+            data.title,
+            data.ingredients,
+            data.preparation,
+            data.information,
+            data.chef,
             data.id
         ]
 
@@ -87,8 +102,8 @@ module.exports = {
             callback()
         })
     },
-    teachers( callback ) {
-        db.query(`SELECT name, id FROM teachers`, function(err, results){
+    chefs( callback ) {
+        db.query(`SELECT name, id FROM chefs`, function(err, results){
             if (err) throw `Database Error! ${err}`
 
             callback( results.rows )
@@ -105,8 +120,8 @@ module.exports = {
 
         if ( filter ){
             filterQuery = `${query}
-                WHERE recipes.name ILIKE '%${filter}%'
-                OR recipes.email ILIKE '%${filter}%'
+                WHERE recipes.title ILIKE '%${filter}%'
+                OR recipes.ingredients ILIKE '%${filter}%'
             `
             totalQuery = `(
                 SELECT count(*) FROM recipes
@@ -115,8 +130,9 @@ module.exports = {
         }
 
         query = `
-            SELECT recipes.*, ${totalQuery}
+            SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name
             FROM recipes
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             ${filterQuery}
             LIMIT $1 OFFSET $2
             `

@@ -14,14 +14,21 @@
                     <a href="/"><img src="/assets/logo.png" alt="Logo do Foodfy" class="logo-img"></a>
                 </div>
                 <div class="menu">
-                    <a href="/sobre">Sobre</a>
-                    <a href="/receitas">Receitas</a>
+                    <a href="/site/about">Sobre</a>
+                    <a href="/site/recipes">Receitas</a>
+                    <a href="/site/chefs">Chefs</a>
+                    <a href="/admin/chefs">Gerenciar</a>
+                </div>
+                <div class="search-recipe">
+                    <form action="/site/recipes" method="get">
+                        <input type="text" name="filter" placeholder="Buscar receita por nome ou ingrediente">
+                    <button type="submit" class="button">Buscar</button>
                 </div>
             </header>
 
-        {% block content %}    
+                {% block content %}    
 
-        {% endblock %}
+                {% endblock %}
             
         </div>
         <footer>

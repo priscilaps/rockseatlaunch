@@ -1,17 +1,17 @@
 const chef = require('../models/chef')
 
-const { age, date, separateSubjects, graduation } = require('../../lib/utils')
+const { date } = require('../../lib/utils')
 
 module.exports = {
     index(req,res){
         let { filter, page, limit } = req.query
 
         page = page || 1
-        limit = limit || 2
+        limit = limit || 16
         let offset = limit * (page - 1)
 
         const params = {
-            filter,
+            //filter,
             page,
             limit,
             offset,
@@ -20,7 +20,7 @@ module.exports = {
                     total: Math.ceil( chefs[0].total / limit ),
                     page
                 }
-                return res.render("chefs/index", { chefs: separateSubjects(chefs), pagination, filter })
+                return res.render("admin/chefs/index", { chefs, pagination /*, filter*/ })
             }
         }
 
@@ -28,7 +28,7 @@ module.exports = {
 
     },
     create(req,res){
-        return res.render("chefs/create")
+        return res.render("admin/chefs/create")
     },
     post(req,res){
         const keys = Object.keys(req.body)
@@ -41,31 +41,49 @@ module.exports = {
         }
 
         chef.create(req.body, function(chef){
-            return res.redirect(`/chefs/${chef.id}`)
+            return res.redirect(`/admin/chef/${chef.id}`)
         })
     },
     show(req,res){
         chef.find(req.params.id, function(chef){
             if (!chef) return res.send("chef not found!")
 
-            chef.age = age(chef.dob)
-            chef.education_lvl = graduation(chef.education_lvl)
-            chef.subjects = chef.subjects.split(",")
-            chef.created_at = date(chef.created_at).format
+            const query = require('../models/chef')
+            
+            query.findRecipeByChef(req.params.id, function(recipesByChef){
+                
+                const chefsRecipes = require('../models/chef')
+                let { filter, page, limit } = req.query
 
-            return res.render("chefs/show", { chef })
+                page = page || 1
+                limit = limit || 4
+                let offset = limit * (page - 1)
+
+                const params = {
+                    //filter,
+                    page,
+                    limit,
+                    offset,
+                    callback(chefs){
+                        const pagination = {
+                            total: Math.ceil( chefs[0].total / limit ),
+                            limit: limit,
+                            page
+                        }
+                        return res.render("admin/chefs/show", { chef, pagination, items: recipesByChef })
+                    }
+                }
+                chefsRecipes.paginate(params)
+            })
         })
     },
     edit(req,res){
         chef.find(req.params.id, function(chef){
             if (!chef) return res.send("chef not found!")
 
-            chef.dob = date(chef.dob).iso
-            chef.education_lvl = graduation(chef.education_lvl)
-            chef.subjects = chef.subjects.split(",")
             chef.created_at = date(chef.created_at).format
 
-            return res.render("chefs/edit", { chef })
+            return res.render("admin/chefs/edit", { chef })
         })
     },
     put(req,res){
@@ -79,12 +97,46 @@ module.exports = {
         }
 
         chef.update(req.body, function(){
-            return res.redirect(`/chefs/${req.body.id}`)
+            return res.redirect(`/admin/chef/${req.body.id}`)
         })
     },
     delete(req,res){
         chef.delete(req.body.id, function(){
-            return res.redirect(`/chefs`)
+            return res.redirect(`/admin/chefs`)
+        })
+    },
+    list(req, res){
+        let { page, limit } = req.query
+        
+        page = page || 1
+        limit = limit || 16
+        let offset = limit * (page - 1)
+
+        const params = {
+            page,
+            limit,
+            offset,
+            callback(chef){
+                const pagination = {
+                    total: Math.ceil( chef[0].total / limit ),
+                    page
+                }
+                return res.render("site/chefs", { items: chef, pagination})
+            }
+        }
+        
+        chef.paginate(params)
+    },
+    open(req, res) {
+        chef.find(req.params.id, function(chef){
+            if (!chef) return res.send("chef not found!")
+
+            const query = require('../models/chef')
+            query.findRecipeByChef(req.params.id, function(recipesByChef){
+                return res.render("site/chef", { chef, items: recipesByChef })
+            })
+
+            
         })
     }
 }
