@@ -1,0 +1,17 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+    <title>Receita - Foodfy</title>
+{% endblock %}
+
+{% block bodyid %} id="receita" {% endblock %}
+
+{% block content%}
+
+    <section class="main-content">
+        <div class="recipes">
+            {% include 'recipe.njk' %}
+        </div>
+    </section> 
+    <script src="/scripts.js"></script>
+{% endblock %}

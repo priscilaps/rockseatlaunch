@@ -1,0 +1,47 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+    <title>Adicionar Produto - Launchstore</title>
+{% endblock %}
+
+{% block bodyid %} id="manage-product" {% endblock %}
+
+{% block content %}
+<section class="container form">
+    <form class="card" method="POST" action="/products?_method=PUT">
+
+        <div class="create header">
+            <h3 class="page-title">Editar Produto</h1>
+        </div>
+        
+        <div class="fields">
+            {% include 'products/fields.njk' %}
+            <input 
+                type="hidden" 
+                name="id"
+                value={{product.id}}>
+        </div>     
+
+        <button type="submit" class="button edit">Atualizar</button> 
+    </form>
+            <form id="form-delete" method="POST" action="/products?_method=DELETE">
+            <input 
+                type="hidden" 
+                name="id"
+                value={{product.id}}>
+
+            <button class="button delete" type="submit">Delete</button>
+        </form>
+</section>
+<script>
+
+            const formDelete = document.querySelector('#form-delete')
+            formDelete.addEventListener("submit", function(){
+                const confirmation = confirm("Tem certeza que deseja deletar?")
+                if (!confirmation){
+                    event.preventDefault()
+                }
+            })
+        
+</script>
+{% endblock content %}

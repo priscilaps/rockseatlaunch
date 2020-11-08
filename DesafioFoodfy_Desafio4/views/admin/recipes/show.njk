@@ -1,0 +1,16 @@
+{% extends "admin/recipes/layout.njk" %}
+
+{% block head %}
+    <title>Editar Receita - Foodfy</title>
+{% endblock %}
+
+{% block bodyid %} id="receita" {% endblock %}
+
+{% block content%}
+    <div class="show header">
+        <h1 class="page-title">Receita: {{item.title}}</h1>
+        <a href="/admin/recipes/{{ item.id }}/edit" class="button">Editar Receita</a>
+    </div>
+    {% include 'recipe.njk' %}
+
+{% endblock %}

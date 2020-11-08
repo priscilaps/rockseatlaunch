@@ -1,0 +1,38 @@
+
+<div id="{{item.id}}" class="recipe-info">
+    <img src="{{item.image}}" alt="{{item.title}}" class="img-recipe">
+    
+    <h2 class="title-recipe">{{item.title}}</h2>
+    <p class="author-recipe">por {{item.author}}</p>
+    
+    <div class="ingridients-wrap wrapper">
+        <div class="title">
+            <h3>Ingredientes</h3>
+            <div class="button">Esconder</div>
+        </div>
+        <ul class="ingredients button-content show">
+            {% for ingredient in item.ingredients %}
+                <li>{{ingredient}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="preparation-wrap wrapper">
+        <div class="title">
+            <h3>Modo de Preparo</h3>
+            <div class="button">Esconder</div>
+        </div>
+        <ol class="preparation button-content show">
+            {% for step in item.preparation %}
+                <li>{{step}}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    <div class="hints-wrap wrapper">
+        <div class="title">
+            <h3>Informações adicionais</h3>
+            <div class="button">Esconder</div>
+        </div>
+        <p class="hints button-content show">{{item.information}}</p>
+    </div>
+</div>
+<script src="/scripts.js"></script>
