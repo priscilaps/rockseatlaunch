@@ -3,6 +3,7 @@ const { formatPrice } = require('../../lib/utils')
 
 const Category = require('../models/category')
 const Product = require('../models/product')
+const File = require('../models/file')
 
 module.exports = {
     create(req, res){
@@ -30,12 +31,16 @@ module.exports = {
             }
                 
         }
+        
+        if (req.files.length == 0)
+            return res.send('Por favor, envie pelo menos uma imagem.')
+
 
         let results = await Product.create(req.body)
         const productID = results.rows[0].id
 
-        results = await Category.all()
-        const categories = results.rows
+        const filesPromise = req.files.map(file => File.create({...file, product_id: productID}))
+        await Promise.all(filesPromise)
 
         return res.redirect(`/products/${productID}/edit`)
     },
@@ -58,11 +63,19 @@ module.exports = {
         product.old_price = formatPrice(product.old_price)
         product.price = formatPrice(product.price)
 
-
+        //get categories
         results = await Category.all()
         const categories = results.rows
 
-        return res.render("products/edit.njk", { product, categories })
+        //get images
+        results = await Product.files(Product.id)
+        let files = results.rows
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
+
+        return res.render("products/edit.njk", { product, categories, files })
     },
     async put(req, res){
         const keys = Object.keys(req.body)
