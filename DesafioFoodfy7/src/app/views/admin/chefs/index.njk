@@ -1,0 +1,33 @@
+{% extends "layout_admin.njk" %}
+
+{% block head %}
+    <title>Gerenciar Chefs - Foodfy</title>
+{% endblock %}
+
+{% block bodyid %} id="manage-chefs" {% endblock %}
+
+{% block content%}
+    <section class="list">
+        <div class="header" id="list-header">
+            <h1 class="page-title">Gerenciar Chefs</h1>
+            <a href="/admin/chefs/create" class="button">Novo Chef</a>
+        </div>
+        <div class="list-chefs">
+            {% for item in chefs %}
+                <div class="chef" id="{{item.id}}">
+                    <div class="left">
+                        <img src="{{item.avatar_url}}" alt="{{item.name}}" class="chef-avatar">
+                    </div>
+                    <div class="rigth">
+                        <h2 class="chef-name">{{item.name}}</h2>
+                        <a href="/admin/chef/{{ item.id }}" class="viewButton">Visualizar</a>
+                    </div>
+                </div>
+            {% endfor %}    
+        </div>
+    </section>
+    {% include 'pagination.njk' %}
+
+    <script src="/scripts.js"></script>
+            
+{% endblock %}

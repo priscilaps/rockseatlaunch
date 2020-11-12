@@ -1,0 +1,22 @@
+{% extends "layout_admin.njk" %}
+
+{% block head %}
+    <title>Adicionar Chef - Foodfy</title>
+{% endblock %}
+
+{% block bodyid %} id="manage-chefs" {% endblock %}
+
+{% block content %}
+    <section class="create">
+        <div class="header" id="create-header">
+            <h1 class="page-title">Adicionar Chef</h1>
+        </div>
+        <form method="POST" action="/admin/chefs">
+            <section class="create">
+                
+                {% include 'admin/chefs/fields.njk' %}
+                
+            </section>
+        </form>
+    </section>
+{% endblock content %}
