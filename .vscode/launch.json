@@ -6,12 +6,11 @@
     "configurations": [
         {
             "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\fase2-parte1\\desafio1.js"
+            "request": "attach",
+            "name": "Attach to Process",
+            "protocol": "inspector",
+            "address": "localhost",
+            "port": 9229
         }
     ]
 }
