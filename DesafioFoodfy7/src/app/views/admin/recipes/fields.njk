@@ -1,20 +1,51 @@
 <button type="submit" class="button">Salvar receita</button>
 <div class="item">
-    <div>Imagem da receita</div>
-    <div>
-        <input 
-            type="url" 
-            name="image" 
-            value="{{ recipe.image }}">
-    </div>
-</div>
-<div class="item">
     <div>Nome da receita</div>
     <div>
         <input 
             type="text" 
             name="title" 
             value="{{ recipe.title }}">
+    </div>
+</div>
+<div class="item">
+    <div>Imagem da receita</div>
+        <div class="gallery">
+            <div id="photos-upload">
+                <input 
+                    id="photos-input"
+                    type="file" 
+                    name="photos" 
+                    multiple
+                    accept="image/*"
+                    onchange="PhotosUpload.handleFileInput(event)"
+                >
+                <i class="material-icons">add</i>
+            </div>
+            <div id="photos-preview">
+                {% if files %}
+                    {% for image in files%}
+                        <div class="photo" id="{{image.id}}">
+                            <img src="{{image.src}}" alt="{{image.name}}">
+                            <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                        </div>
+                    {% endfor%}
+                    <input type="hidden" name="removed_files">
+                {% endif %}
+            </div>
+            <!-- {{ recipe.image }} -->
+        </div>
+</div>
+<div class="item">
+    <div>Chef</div>
+    <div>
+        <select name="chef_id" id="">
+        {% for chef in chefsOptions %}
+            <option value="{{ chef.id }}" {% if recipe.chef_id == chef.id %} selected {% endif %}>
+                {{ chef.name }}
+            </option>
+        {% endfor %}
+        </select>
     </div>
 </div>
 <div id="ingredients" class="item">
@@ -51,15 +82,4 @@
         <textarea name="information" cols="30" rows="10" type="text">{{ recipe.information }}</textarea>
     </div>
 </div>
-<div class="item">
-    <div>Chef</div>
-    <div>
-        <select name="chef" id="">
-        {% for chef in chefsOptions %}
-            <option value="{{ chef.id }}" {% if recipe.chef_id == chef.id %} selected {% endif %}>
-                {{ chef.name }}
-            </option>
-        {% endfor %}
-        </select>
-    </div>
-</div>
+

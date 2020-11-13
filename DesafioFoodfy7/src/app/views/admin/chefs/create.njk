@@ -11,7 +11,7 @@
         <div class="header" id="create-header">
             <h1 class="page-title">Adicionar Chef</h1>
         </div>
-        <form method="POST" action="/admin/chefs">
+        <form method="POST" action="/admin/chefs" enctype="multipart/form-data">
             <section class="create">
                 
                 {% include 'admin/chefs/fields.njk' %}
